@@ -4,11 +4,11 @@ import java.awt.event.*;
 import java.sql.*;
 import java.util.regex.*;
 
-public class StoryTellerOriginal extends JFrame {
+public class StoryTellerForm2 extends JFrame {
     private JTextField nameField, emailField, phoneField, storyField;
     private JButton submitButton;
 
-    public StoryTellerOriginal() {
+    public StoryTellerForm2() {
         // Window setup
         setTitle("Story Submission Form");
         setSize(400, 340);
@@ -46,7 +46,7 @@ public class StoryTellerOriginal extends JFrame {
                 if (!Character.isDigit(c) && c != '+' && c != KeyEvent.VK_BACK_SPACE && c != KeyEvent.VK_DELETE) {
                     e.consume(); // ignore the key press
                     JOptionPane.showMessageDialog(
-                    		StoryTellerOriginal.this,
+                    		StoryTellerForm2.this,
                             "Only digits and '+' sign are allowed in phone number!",
                             "Invalid Input",
                             JOptionPane.WARNING_MESSAGE
@@ -57,7 +57,7 @@ public class StoryTellerOriginal extends JFrame {
                 if (phoneField.getText().length() >= 15 && Character.isDigit(c)) {
                     e.consume();
                     JOptionPane.showMessageDialog(
-                    		StoryTellerOriginal.this,
+                    		StoryTellerForm2.this,
                             "Phone number cannot exceed 15 digits!",
                             "Limit Reached",
                             JOptionPane.WARNING_MESSAGE
@@ -186,6 +186,6 @@ public class StoryTellerOriginal extends JFrame {
     }
 
     public static void main(String[] args) {
-        SwingUtilities.invokeLater(StoryTellerOriginal::new);
+        SwingUtilities.invokeLater(StoryTellerForm2::new);
     }
 }
