@@ -1,15 +1,14 @@
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.sql.*;
 import java.util.regex.*;
 
-public class StoryTellerForm extends JFrame {
+public class StoryTellerOriginal extends JFrame {
     private JTextField nameField, emailField, phoneField, storyField;
     private JButton submitButton;
 
-    public StoryTellerForm() {
+    public StoryTellerOriginal() {
         // Window setup
         setTitle("Story Submission Form");
         setSize(400, 340);
@@ -43,23 +42,23 @@ public class StoryTellerForm extends JFrame {
             public void keyTyped(KeyEvent e) {
                 char c = e.getKeyChar();
 
-                // Allow only digits and control keys (backspace, delete)
-                if (!Character.isDigit(c) && c != KeyEvent.VK_BACK_SPACE && c != KeyEvent.VK_DELETE) {
+                // Allow digits, '+' (for country code), and control keys
+                if (!Character.isDigit(c) && c != '+' && c != KeyEvent.VK_BACK_SPACE && c != KeyEvent.VK_DELETE) {
                     e.consume(); // ignore the key press
                     JOptionPane.showMessageDialog(
-                            StoryTellerForm.this,
-                            "Only numeric digits are allowed in phone number!",
+                    		StoryTellerOriginal.this,
+                            "Only digits and '+' sign are allowed in phone number!",
                             "Invalid Input",
                             JOptionPane.WARNING_MESSAGE
                     );
                 }
 
-                // Optional: restrict phone number length
-                if (phoneField.getText().length() >= 10 && Character.isDigit(c)) {
+                // Restrict phone number length (max 15 characters)
+                if (phoneField.getText().length() >= 15 && Character.isDigit(c)) {
                     e.consume();
                     JOptionPane.showMessageDialog(
-                            StoryTellerForm.this,
-                            "Phone number cannot exceed 10 digits!",
+                    		StoryTellerOriginal.this,
+                            "Phone number cannot exceed 15 digits!",
                             "Limit Reached",
                             JOptionPane.WARNING_MESSAGE
                     );
@@ -93,7 +92,7 @@ public class StoryTellerForm extends JFrame {
             return;
         }
 
-        //  Email validation
+        // Email validation
         if (email.isEmpty()) {
             showError("Email cannot be empty!");
             return;
@@ -103,13 +102,13 @@ public class StoryTellerForm extends JFrame {
             return;
         }
 
-        //  Phone number validation
+        // Phone number validation (7–15 digits, optional +)
         if (phone.isEmpty()) {
             showError("Phone number cannot be empty!");
             return;
         }
-        if (!phone.matches("\\d{10}")) {
-            showError("Phone number must be exactly 10 digits!");
+        if (!phone.matches("^[+]?[0-9]{7,15}$")) {
+            showError("Please enter a valid phone number (7–15 digits, optional +country code)!");
             return;
         }
 
@@ -187,6 +186,6 @@ public class StoryTellerForm extends JFrame {
     }
 
     public static void main(String[] args) {
-        SwingUtilities.invokeLater(StoryTellerForm::new);
+        SwingUtilities.invokeLater(StoryTellerOriginal::new);
     }
 }
