@@ -83,7 +83,7 @@ public class StoryTellerForm extends JFrame {
 
         // === VALIDATION SECTION ===
 
-        // 1️⃣ Name validation
+        // Name validation
         if (name.isEmpty()) {
             showError("Name cannot be empty!");
             return;
@@ -93,7 +93,7 @@ public class StoryTellerForm extends JFrame {
             return;
         }
 
-        // 2️⃣ Email validation
+        //  Email validation
         if (email.isEmpty()) {
             showError("Email cannot be empty!");
             return;
@@ -103,7 +103,7 @@ public class StoryTellerForm extends JFrame {
             return;
         }
 
-        // 3️⃣ Phone number validation
+        //  Phone number validation
         if (phone.isEmpty()) {
             showError("Phone number cannot be empty!");
             return;
@@ -113,7 +113,7 @@ public class StoryTellerForm extends JFrame {
             return;
         }
 
-        // 4️⃣ Story validation
+        // Story validation
         if (story.isEmpty()) {
             showError("Please enter your story line!");
             return;
